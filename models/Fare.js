@@ -2,9 +2,21 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Fare = sequelize.define('Fare', {
-    id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
-    distance: { type: DataTypes.FLOAT, allowNull: false },
-    farePerKm: { type: DataTypes.FLOAT, allowNull: false },
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    },
+    distance: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+    farePerKm: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+}, {
+    timestamps: false,
 });
 
 module.exports = Fare;
