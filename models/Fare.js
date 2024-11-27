@@ -12,11 +12,17 @@ const Fare = sequelize.define('Fare', {
         allowNull: false,
     },
     farePerKm: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
-}, {
-    timestamps: false,
+    isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, 
+    },
+    currency: {
+        type: DataTypes.STRING,
+        defaultValue: 'INR',
+    },
 });
 
 module.exports = Fare;
