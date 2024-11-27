@@ -4,7 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const userRoutes = require('./routes/userRoutes');
 const tripRoutes = require('./routes/tripRoutes');
-const { sequelize } = require('./config/db');
+const  sequelize  = require('./config/db');
 const errorHandler = require('./middleware/errorHandler'); 
 
 const app = express();
@@ -20,12 +20,12 @@ sequelize.authenticate()
     .catch((err) => console.error('Database connection failed:', err));
 
 // API Routes
-app.use('/api/users', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/trips', tripRoutes);
 
 // Custom Error Handling Middleware
 app.use(errorHandler); 
 
 // Start Server
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -8,6 +8,7 @@ dotenv.config();
 // User Registration
 exports.registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
+   // console.log("sdfghjk",name,email,password);
 
     // Input validation
     const errors = validationResult(req);
@@ -19,6 +20,9 @@ exports.registerUser = async (req, res) => {
         // Check if user already exists
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
+
+            console.log("name",name, email, password);
+
             return res.status(400).json({ error: 'User already exists with this email' });
         }
 
@@ -27,7 +31,7 @@ exports.registerUser = async (req, res) => {
 
         // Create user in DB
         const user = await User.create({ name, email, password: hashedPassword, role, isOnline: false });
-
+     console.log("+++++ UDSSTYDTY",user);
         // Send success response
         res.status(201).json({
             message: 'User registered successfully',

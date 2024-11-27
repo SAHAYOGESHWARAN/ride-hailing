@@ -1,4 +1,7 @@
-const { User, Trip, Fare } = require('../models');
+const  User = require('../models/User');
+const Trip = require('../models/Trip');
+const Fare = require('../models/Fare')
+
 const { Op } = require('sequelize');
 
 // Request a Trip (Rider requests a trip)

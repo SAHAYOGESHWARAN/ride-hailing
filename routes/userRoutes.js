@@ -3,6 +3,7 @@ const { registerUser, updateDriverStatus } = require('../controllers/userControl
 const router = express.Router();
 
 router.post('/register', registerUser);
-router.patch('/status', updateDriverStatus); // For updating driver online/offline status
+router.patch('/status', updateDriverStatus); 
+console.log("dfghjk",registerUser);
 
 module.exports = router;

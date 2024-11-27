@@ -1,35 +1,49 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
 
-const User = sequelize.define('User', {
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database'); 
+
+class User extends Model {}
+
+User.init({
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'rider',
+    validate: {
+      isIn: [['rider', 'driver', 'admin']],
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    role: {
-        type: DataTypes.ENUM('rider', 'driver'),
-        allowNull: false,
-    },
-    isOnline: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-    },
+  },
+  isOnline: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  lastLogin: {
+    type: DataTypes.DATE,
+  },
 }, {
-    timestamps: true,
+  sequelize,
+  modelName: 'User',
+  timestamps: true,
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
 });
 
 module.exports = User;
