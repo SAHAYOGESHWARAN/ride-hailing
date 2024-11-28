@@ -82,8 +82,8 @@ exports.acceptTrip = async (req, res) => {
 
         // Update the trip status and assign the driver
         trip.driverId = driverId;
-        trip.status = 'accepted'; // Change status to accepted
-        trip.eta = estimatedTime; // Set ETA
+        trip.status = 'accepted';
+        trip.eta = estimatedTime; 
         await trip.save();
 
         res.status(200).json({
